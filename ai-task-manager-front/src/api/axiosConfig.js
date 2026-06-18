@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const getBaseURL = () => {
-  let url = import.meta.env.VITE_API_URL || 'https://ai-task-manager-2jrh.onrender.com/api';
+  let url = import.meta.env.VITE_API_URL || 'http://localhost:8080/api';
   if (url && !url.endsWith('/api') && !url.endsWith('/api/')) {
     url = url.replace(/\/+$/, '') + '/api';
   }

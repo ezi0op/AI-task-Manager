@@ -18,13 +18,17 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [Live Demo](#live-demo)
 - [Tech Stack](#tech-stack)
 - [Features](#features)
 - [AI Features](#ai-features)
+- [AI Workflow](#ai-workflow)
 - [Security](#security)
 - [Blockchain Audit Trail](#blockchain-audit-trail)
 - [Architecture](#architecture)
+- [Architecture Overview](#architecture-overview)
 - [Database Design](#database-design)
+- [Database Schema](#database-schema)
 - [Setup Instructions](#setup-instructions)
 - [API Endpoints](#api-endpoints)
 - [Screenshots](#screenshots)
@@ -36,6 +40,14 @@
 AI Task Manager is a smart task management system that combines traditional task planning, AI-powered automation, role-based access control, admin management, and blockchain-inspired task audit logging.
 
 The application helps users register, log in, manage tasks, track task status, view dashboard statistics, update profile details, change passwords, generate AI-powered task details, review AI productivity summaries, receive smart task suggestions, access role-based features, and inspect a verifiable task audit trail.
+
+## Live Demo
+
+| Service | URL |
+| --- | --- |
+| Frontend | [https://ai-task-manager-sable.vercel.app](https://ai-task-manager-sable.vercel.app/) |
+| Backend | [https://ai-task-manager-2jrh.onrender.com](https://ai-task-manager-2jrh.onrender.com) |
+| Swagger | [https://ai-task-manager-2jrh.onrender.com/swagger-ui/index.html](https://ai-task-manager-2jrh.onrender.com/swagger-ui/index.html) |
 
 ## Tech Stack
 
@@ -131,6 +143,25 @@ No duplicate tasks detected.
 2 tasks are approaching their deadlines.
 ```
 
+## AI Workflow
+
+1. User enters a task title.
+2. Frontend sends the request to the AI API.
+3. Spring AI sends a structured prompt to OpenRouter through the OpenAI-compatible chat model.
+4. AI returns generated task details:
+   - Description
+   - Priority
+   - Estimated effort
+   - Due date
+5. User can save the generated task into the task manager.
+
+Additional AI features:
+
+- Productivity summary
+- Smart suggestions
+- Duplicate task detection
+- Due-date risk alerts
+
 ## Security
 
 AI Task Manager uses Spring Security with stateless JWT authentication to secure user and admin workflows.
@@ -210,6 +241,28 @@ Additional components:
 - OpenRouter integration
 - Swagger OpenAPI
 
+## Architecture Overview
+
+```text
+Frontend (React + Vite)
+        |
+Axios API Calls
+        |
+Spring Boot REST APIs
+        |
+Service Layer
+        |
+JPA/Hibernate
+        |
+MySQL Database
+```
+
+Additional services:
+
+- JWT Security
+- Spring AI Integration
+- Blockchain Audit Service
+
 ## Database Design
 
 ```mermaid
@@ -256,6 +309,10 @@ erDiagram
 | `Task` | `id`, `title`, `description`, `priority`, `status`, `dueDate`, `user` |
 | `BlacklistedToken` | `id`, `token`, `blacklistedAt` |
 | `TaskBlock` | `id`, `taskId`, `action`, `previousHash`, `currentHash`, `createdAt` |
+
+## Database Schema
+
+![Database Schema](docs/screenshots/database-schema.png)
 
 ## Setup Instructions
 
