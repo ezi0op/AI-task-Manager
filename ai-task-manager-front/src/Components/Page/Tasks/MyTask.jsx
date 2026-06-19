@@ -111,16 +111,16 @@ const MyTask = () => {
         ) : (
           <ul className="divide-y divide-gray-100">
             {tasks.map((task) => (
-              <li key={task.id} className="p-6 hover:bg-gray-50 transition-colors flex items-center justify-between">
+              <li key={task.id} className="p-4 sm:p-6 hover:bg-gray-50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className="mt-1">
+                  <div className="mt-1 flex-shrink-0">
                     {getStatusIcon(task.status)}
                   </div>
-                  <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-gray-800">{task.title}</h3>
-                    <p className="text-gray-500 mt-1 line-clamp-2">{task.description}</p>
-                    <div className="flex items-center gap-4 mt-3 text-sm">
-                      <span className={`px-2 py-1 rounded-md font-medium ${
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-800 break-words">{task.title}</h3>
+                    <p className="text-gray-500 mt-1 line-clamp-2 text-sm sm:text-base">{task.description}</p>
+                    <div className="flex flex-wrap items-center gap-3 sm:gap-4 mt-3 text-xs sm:text-sm">
+                      <span className={`px-2 py-0.5 rounded-md font-medium ${
                         task.priority === 'HIGH' ? 'bg-red-100 text-red-700' :
                         task.priority === 'MEDIUM' ? 'bg-yellow-100 text-yellow-700' :
                         'bg-blue-100 text-blue-700'
@@ -134,11 +134,11 @@ const MyTask = () => {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-end gap-3 ml-4">
+                <div className="flex sm:flex-col items-center sm:items-end justify-between sm:justify-start gap-3 w-full sm:w-auto ml-0 sm:ml-4 border-t sm:border-t-0 pt-3 sm:pt-0 border-gray-100">
                   <select 
                     value={task.status}
                     onChange={(e) => handleStatusChange(task.id, e.target.value)}
-                    className="border border-gray-200 rounded-lg p-2 text-sm bg-white focus:ring-2 focus:ring-blue-500 outline-none"
+                    className="border border-gray-200 rounded-lg p-2 text-xs sm:text-sm bg-white focus:ring-2 focus:ring-blue-500 outline-none w-auto"
                   >
                     <option value="TODO">To Do</option>
                     <option value="IN_PROGRESS">In Progress</option>
@@ -151,14 +151,14 @@ const MyTask = () => {
                       className="p-2 text-gray-400 hover:text-indigo-600 hover:bg-indigo-50 rounded-lg transition-colors"
                       title="Edit Task"
                     >
-                      <Edit2 className="w-5 h-5" />
+                      <Edit2 className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                     <button 
                       onClick={() => handleDelete(task.id)}
                       className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                       title="Delete Task"
                     >
-                      <Trash2 className="w-5 h-5" />
+                      <Trash2 className="w-4 h-4 sm:w-5 sm:h-5" />
                     </button>
                   </div>
                 </div>

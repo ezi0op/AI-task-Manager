@@ -126,8 +126,8 @@ const Profile = () => {
       )}
 
       {/* Avatar Card */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-8">
-        <div className="flex items-center gap-6">
+      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 sm:p-8">
+        <div className="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-4 sm:gap-6">
           {profile?.image && !imageError ? (
             <img 
               src={profile.image} 
@@ -267,11 +267,11 @@ const Profile = () => {
             )}
           </div>
 
-          <div className="flex gap-3 pt-3 border-t border-slate-50">
+          <div className="flex flex-col sm:flex-row gap-3 pt-3 border-t border-slate-50">
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm shadow-md shadow-indigo-600/20 disabled:opacity-50"
+              className="w-full sm:flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm shadow-md shadow-indigo-600/20 disabled:opacity-50"
             >
               <Save className="w-4 h-4" />
               {saving ? 'Saving...' : 'Save Changes'}
@@ -279,7 +279,7 @@ const Profile = () => {
             <button
               type="button"
               onClick={() => setIsEditing(false)}
-              className="px-6 py-3 rounded-xl font-semibold text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors text-center"
             >
               Cancel
             </button>
@@ -289,16 +289,16 @@ const Profile = () => {
 
       {/* Main Action buttons (only when not editing) */}
       {!isEditing && (
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-3">
           <button
             onClick={() => navigate('/change-password')}
-            className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm shadow-md shadow-indigo-600/20"
+            className="w-full sm:flex-1 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm shadow-md shadow-indigo-600/20"
           >
             Change Password
           </button>
           <button
             onClick={() => navigate('/dashboard')}
-            className="px-6 py-3 rounded-xl font-semibold text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors"
+            className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-sm text-slate-600 bg-slate-100 hover:bg-slate-200 transition-colors text-center"
           >
             Back to Dashboard
           </button>

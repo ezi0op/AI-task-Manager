@@ -137,13 +137,13 @@ const ChangePass = () => {
           </div>
         </div>
 
-        <div className="flex gap-3 pt-2">
+        <div className="flex flex-col sm:flex-row gap-3 pt-2">
           <button type="button" onClick={() => navigate('/dashboard')}
-            className="px-6 py-3 rounded-xl font-semibold text-sm text-slate-500 bg-slate-100 hover:bg-slate-200 transition-colors">
+            className="w-full sm:w-auto px-6 py-3 rounded-xl font-semibold text-sm text-slate-500 bg-slate-100 hover:bg-slate-200 transition-colors text-center">
             Cancel
           </button>
           <button type="submit" disabled={loading}
-            className="flex-1 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm disabled:opacity-50 shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
+            className="w-full sm:flex-1 bg-indigo-600 text-white px-6 py-3 rounded-xl hover:bg-indigo-700 transition-all font-semibold text-sm disabled:opacity-50 shadow-md shadow-indigo-600/20 flex items-center justify-center gap-2">
             {loading ? <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" /> : <Lock className="w-4 h-4" />}
             {loading ? 'Changing...' : 'Change Password'}
           </button>

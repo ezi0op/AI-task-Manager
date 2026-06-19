@@ -29,10 +29,10 @@ const TaskOverView = () => {
       <button onClick={() => navigate('/tasks')} className="text-blue-600 mb-4">&larr; Back to Tasks</button>
       <h1 className="text-2xl font-bold mb-2">{task.title}</h1>
       <p className="text-gray-600 mb-4">{task.description}</p>
-      <div className="flex gap-4 mb-4">
-        <span className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">Status: {task.status}</span>
-        <span className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">Priority: {task.priority}</span>
-        {task.dueDate && <span className="px-3 py-1 bg-gray-100 rounded-full text-sm font-medium">Due: {task.dueDate}</span>}
+      <div className="flex flex-wrap gap-2.5 sm:gap-4 mb-4">
+        <span className="px-3 py-1 bg-gray-100 rounded-full text-xs sm:text-sm font-medium">Status: {task.status}</span>
+        <span className="px-3 py-1 bg-gray-100 rounded-full text-xs sm:text-sm font-medium">Priority: {task.priority}</span>
+        {task.dueDate && <span className="px-3 py-1 bg-gray-100 rounded-full text-xs sm:text-sm font-medium">Due: {task.dueDate}</span>}
       </div>
     </div>
   );

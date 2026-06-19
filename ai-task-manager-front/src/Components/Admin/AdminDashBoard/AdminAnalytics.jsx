@@ -78,7 +78,7 @@ const AdminAnalytics = () => {
       </div>
 
       {/* Grid of counters */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {[
           {
             title: 'Users Count', value: stats.usersCount, subtext: 'Registered accounts',

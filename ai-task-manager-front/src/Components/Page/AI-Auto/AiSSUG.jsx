@@ -160,12 +160,12 @@ const AiSSUG = () => {
         ) : (
           suggestions.map((sug, idx) => (
             <div key={idx} className={`p-6 rounded-2xl border ${getRiskColor(sug.riskLevel)}`}>
-              <div className="flex items-center justify-between border-b border-slate-100/30 pb-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-slate-100/30 pb-3 gap-2">
                 <div className="flex items-center gap-2.5">
                   {getRiskIcon(sug.riskLevel)}
                   <h3 className="font-bold text-slate-800 text-sm">Task Analysis Report</h3>
                 </div>
-                <div className="px-2.5 py-1 rounded-lg bg-white/80 text-[10px] font-bold text-slate-600 border border-slate-100/50 shadow-sm uppercase tracking-wider">
+                <div className="px-2.5 py-1 rounded-lg bg-white/80 text-[10px] font-bold text-slate-600 border border-slate-100/50 shadow-sm uppercase tracking-wider w-fit">
                   Risk Level: {sug.riskLevel || 'Unknown'}
                 </div>
               </div>

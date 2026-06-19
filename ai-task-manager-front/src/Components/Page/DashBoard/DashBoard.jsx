@@ -143,7 +143,7 @@ const DashBoard = () => {
       {/* ═══ Seamless Toggle Header ═══ */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-white/40 p-4 rounded-2xl border border-slate-100/80 backdrop-blur-sm">
         <div>
-          <h1 className="text-2xl font-black text-slate-800 tracking-tight">
+          <h1 className="text-xl sm:text-2xl font-black text-slate-800 tracking-tight">
             {dashboardMode === 'admin' ? 'Admin Control Center' : 'My Personal Workspace'}
           </h1>
           <p className="text-slate-400 text-xs mt-0.5 font-medium">
@@ -151,14 +151,14 @@ const DashBoard = () => {
           </p>
         </div>
         {isAdmin && (
-          <div className="bg-slate-100/80 p-1 rounded-xl flex gap-1 shadow-sm border border-slate-200/40">
+          <div className="bg-slate-100/80 p-1 rounded-xl flex gap-1 shadow-sm border border-slate-200/40 w-full sm:w-auto justify-center sm:justify-start">
             <button
               onClick={() => {
                 localStorage.setItem('workspaceMode', 'user');
                 setDashboardMode('user');
                 window.dispatchEvent(new Event('workspaceModeChange'));
               }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-initial text-center ${
                 dashboardMode === 'user'
                   ? 'bg-white text-indigo-600 shadow'
                   : 'text-slate-500 hover:text-slate-800'
@@ -172,7 +172,7 @@ const DashBoard = () => {
                 setDashboardMode('admin');
                 window.dispatchEvent(new Event('workspaceModeChange'));
               }}
-              className={`px-4 py-2 rounded-lg text-xs font-bold transition-all ${
+              className={`px-3 sm:px-4 py-2 rounded-lg text-xs font-bold transition-all flex-1 sm:flex-initial text-center ${
                 dashboardMode === 'admin'
                   ? 'bg-indigo-600 text-white shadow shadow-indigo-600/10'
                   : 'text-slate-500 hover:text-slate-800'
@@ -188,7 +188,7 @@ const DashBoard = () => {
         /* ════════════════ ADMIN DASHBOARD MODE ════════════════ */
         <div className="space-y-8">
           {/* Admin Stats Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 title: 'Total Registered Users', value: adminStats.usersCount, subtext: 'System scale',
@@ -308,14 +308,14 @@ const DashBoard = () => {
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 p-6 shadow-xl shadow-indigo-600/10">
               <div className="absolute -top-10 -right-10 w-40 h-40 bg-white/10 rounded-full blur-2xl" />
               <div className="absolute -bottom-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-xl" />
-              <div className="relative z-10 flex items-center justify-between">
+              <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                  <div className="bg-white/15 backdrop-blur-sm p-3 rounded-2xl border border-white/10">
+                  <div className="bg-white/15 backdrop-blur-sm p-3 rounded-2xl border border-white/10 flex-shrink-0">
                     <Sparkles className="w-7 h-7 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-white font-bold text-lg">Welcome to AI Task Manager!</h3>
-                    <p className="text-indigo-100/80 text-sm mt-0.5">Sign in to create tasks, get AI suggestions, and unlock all features.</p>
+                    <h3 className="text-white font-bold text-base sm:text-lg">Welcome to AI Task Manager!</h3>
+                    <p className="text-indigo-100/80 text-xs sm:text-sm mt-0.5">Sign in to create tasks, get AI suggestions, and unlock all features.</p>
                   </div>
                 </div>
                 <button
@@ -326,7 +326,7 @@ const DashBoard = () => {
                     localStorage.removeItem('isGuest');
                     navigate('/login');
                   }}
-                  className="bg-white text-indigo-700 font-bold text-sm px-6 py-3 rounded-xl hover:bg-indigo-50 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 flex-shrink-0"
+                  className="bg-white text-indigo-700 font-bold text-sm px-6 py-3 rounded-xl hover:bg-indigo-50 transition-all shadow-lg hover:shadow-xl flex items-center gap-2 w-full md:w-auto justify-center md:justify-start flex-shrink-0"
                 >
                   Sign In
                   <ArrowUpRight className="w-4 h-4" />
@@ -336,7 +336,7 @@ const DashBoard = () => {
           )}
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
               {
                 title: 'Total Tasks', value: stats.totalTasks, subtext: 'All your tasks',
@@ -420,10 +420,10 @@ const DashBoard = () => {
                   {tasks.map(task => {
                     const statusStyle = getStatusStyle(task.status);
                     return (
-                      <div key={task.id} className="flex items-center justify-between px-6 py-4 hover:bg-slate-50/50 transition-colors group cursor-pointer"
+                      <div key={task.id} className="flex flex-col sm:flex-row sm:items-center justify-between px-4 sm:px-6 py-4 hover:bg-slate-50/50 transition-colors group cursor-pointer gap-3"
                         onClick={() => navigate(`/tasks/${task.id}`)}
                       >
-                        <div className="flex items-start gap-4 flex-1 min-w-0">
+                        <div className="flex items-start gap-3 sm:gap-4 flex-1 min-w-0">
                           <div className={`w-2.5 h-2.5 rounded-full mt-2 flex-shrink-0 ${statusStyle.dot}`} />
                           <div className="min-w-0">
                             <h3 className="text-slate-800 font-semibold text-sm mb-0.5 truncate group-hover:text-indigo-600 transition-colors">{task.title}</h3>
@@ -431,7 +431,7 @@ const DashBoard = () => {
                           </div>
                         </div>
                         
-                        <div className="flex items-center gap-4 flex-shrink-0 ml-4">
+                        <div className="flex items-center justify-between sm:justify-end gap-3 sm:gap-4 flex-shrink-0 sm:ml-4 border-t sm:border-t-0 pt-2.5 sm:pt-0 border-slate-50">
                           <span className={`text-[10px] font-bold px-2.5 py-1 rounded-md tracking-wider border ${getPriorityStyle(task.priority)}`}>
                             {task.priority}
                           </span>
@@ -439,7 +439,7 @@ const DashBoard = () => {
                             <Calendar className="w-3.5 h-3.5 flex-shrink-0" />
                             <span className="truncate">{task.dueDate || 'No Date'}</span>
                           </div>
-                          <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors" />
+                          <ChevronRight className="w-4 h-4 text-slate-300 group-hover:text-indigo-500 transition-colors hidden sm:block" />
                         </div>
                       </div>
                     );
@@ -456,7 +456,7 @@ const DashBoard = () => {
                   <BarChart3 className="w-4 h-4 text-slate-300" />
                 </div>
                 
-                <div className="flex items-center gap-6">
+                <div className="flex flex-col sm:flex-row items-center sm:items-start md:items-center lg:items-start xl:items-center gap-6">
                   <div className="w-28 h-28 relative flex-shrink-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <PieChart>
@@ -482,7 +482,7 @@ const DashBoard = () => {
                     </div>
                   </div>
                   
-                  <div className="flex flex-col gap-3 flex-1">
+                  <div className="flex flex-col gap-3 flex-1 w-full pt-2 sm:pt-0">
                     {[
                       { label: 'Completed', value: stats.completedTasks, color: 'bg-emerald-500' },
                       { label: 'In Progress', value: stats.inProgressTasks, color: 'bg-indigo-500' },

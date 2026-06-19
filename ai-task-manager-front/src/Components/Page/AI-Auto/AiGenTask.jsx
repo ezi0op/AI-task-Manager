@@ -120,7 +120,7 @@ const AiGenTask = () => {
               </p>
             </div>
             
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
                 <h3 className="text-sm font-bold text-gray-500 uppercase tracking-wider mb-1">Priority</h3>
                 <span className={`inline-block px-3 py-1 rounded-lg font-medium ${

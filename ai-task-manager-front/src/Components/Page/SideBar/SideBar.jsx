@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { LayoutDashboard, ClipboardList, Plus, Sparkles, Bot, FileText, User, Lock, LogOut, ChevronLeft, ChevronRight, LogIn, Home, Users, BarChart2, Shield, History } from 'lucide-react';
 import { isGuestUser } from '../../../App';
 
-const SideBar = ({ workspaceMode, setWorkspaceMode }) => {
+const SideBar = ({ workspaceMode, setWorkspaceMode, isOpen, setIsOpen }) => {
   const role = localStorage.getItem('role');
   const isGuest = isGuestUser();
   const navigate = useNavigate();
@@ -56,11 +56,17 @@ const SideBar = ({ workspaceMode, setWorkspaceMode }) => {
       localStorage.removeItem('isGuest');
       navigate('/login');
     }
+    // Close sidebar drawer on mobile click
+    setIsOpen(false);
   };
 
   return (
     <div
-      className={`flex flex-col ${collapsed ? 'w-[68px]' : 'w-60'} h-full overflow-y-auto transition-all duration-300 relative`}
+      className={`flex flex-col h-full overflow-y-auto transition-all duration-300 
+        fixed inset-y-0 left-0 z-50 md:static
+        ${isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} 
+        ${collapsed ? 'w-[68px] md:w-[68px]' : 'w-60'} 
+        w-60`}
       style={{
         background: '#0f172a',
         borderRight: '1px solid rgba(255,255,255,0.06)',
@@ -70,7 +76,7 @@ const SideBar = ({ workspaceMode, setWorkspaceMode }) => {
       {/* Collapse Toggle */}
       <button
         onClick={() => setCollapsed(!collapsed)}
-        className="absolute -right-3 top-6 z-20 bg-slate-700 hover:bg-slate-600 text-white rounded-full p-1 shadow transition-all"
+        className="absolute -right-3 top-6 z-20 bg-slate-700 hover:bg-slate-600 text-white rounded-full p-1 shadow transition-all hidden md:block"
       >
         {collapsed ? <ChevronRight size={14} /> : <ChevronLeft size={14} />}
       </button>
